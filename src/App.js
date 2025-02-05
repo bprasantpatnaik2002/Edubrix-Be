@@ -83,7 +83,7 @@ app.post("/api/auth/signup", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new Admin({ email, password: hashedPassword });
         await newUser.save();
-        console.log("User registered successfully");
+        //console.log("User registered successfully");
 
         res.status(201).json({ success: true, message: "User registered successfully" });
     } catch (error) {
@@ -216,7 +216,7 @@ app.post("/services", authenticateUser, async (req, res) => {
 });
 
 app.delete("/services/:id", authenticateUser, async (req, res) => {
-    console.log("deleted",req.params.id);
+    //console.log("deleted",req.params.id);
 
     try {
         await Service.findByIdAndDelete(req.params.id);
@@ -306,7 +306,7 @@ app.get("/newsUpdates", async (req, res) => {
 app.post("/newsUpdates", authenticateUser, async (req, res) => {
     
     try {
-        console.log("added");
+        //console.log("added");
         const newData = new NewsUpdate(req.body);
         await newData.save();
     } catch (error) {
