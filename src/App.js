@@ -240,6 +240,7 @@ app.post("/blogs", authenticateUser, async (req, res) => {
     try {
         const newData = new Blog(req.body);
         await newData.save();
+        console.log("New Data Saved");
     } catch (error) {
         res.status(500).json({ error: "Server error" });
         
@@ -250,6 +251,7 @@ app.delete("/blogs/:id", authenticateUser, async (req, res) => {
     
     try {
         await Blog.findByIdAndDelete(req.params.id);
+        console.log("New Data deleted");
     } catch (error) {
         res.status(500).json({ error: "Server error" });
         
