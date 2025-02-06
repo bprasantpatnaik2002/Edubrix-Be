@@ -20,12 +20,10 @@ const app=express();
 
 // app.use is used whenever we want to make any settings for our backend like allow taking json,url,cookies,cors allowing,etc or adding any middlewares
 
-app.use(cors(
-    {
-        origin:"http://localhost:5173",
-        credentials:true
-    }
-))
+app.use(cors({
+    origin: process.env.Cors_origin || "http://localhost:5173", // Ensure correct frontend URL
+    credentials: true, // ✅ Important: Allows sending cookies
+}));
 
 //allowing cors to flow into and out of backend
 
@@ -44,29 +42,28 @@ const generateToken = (email) => {
 
 const authenticateUser = async (req, res, next) => {
     try {
-        const token = req.cookies.token; // Get token from cookies
+        console.log("Cookies Received:", req.cookies); // 🔥 Debugging
+
+        const token = req.cookies.token;
         if (!token) {
             return res.status(401).json({ error: "Access denied. No token provided." });
         }
 
-        // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // Find user in the database
         const user = await Admin.findOne({ email: decoded.email });
 
         if (!user) {
             return res.status(401).json({ error: "Invalid token. User does not exist." });
         }
 
-        req.user = user; // Store user info in req for further use
-        
-        next(); // Proceed to the next middleware or route handler
-
+        req.user = user;
+        next();
     } catch (error) {
+        console.error("Auth Error:", error);
         return res.status(401).json({ error: "Invalid or expired token." });
     }
 };
+
 
 /* ========================== Signup ========================== */
 
@@ -116,9 +113,10 @@ app.post("/api/auth/login", async (req, res) => {
         // Store JWT token in httpOnly cookie
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+            secure: process.env.NODE_ENV === "production" ? true : false, // ❌ Secure false in dev
             sameSite: "strict",
         });
+        
 
         res.json({ success: true, message: "Login successful" });
 
