@@ -41,8 +41,9 @@ const generateToken = (email) => {
 /* ========================== Middleware to authenticate ========================== */
 
 const authenticateUser = async (req, res, next) => {
+    console.log("I m in the authenticateUser"); // </Debuggin>g
     try {
-        console.log("I m in the authenticateUser"); // </Debuggin>g
+        
         console.log("Cookies Received:", req.cookies); // 🔥 Debugging
 
         const token = req.cookies.token;
