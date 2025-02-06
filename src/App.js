@@ -116,7 +116,7 @@ app.post("/api/auth/login", async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production" ? true : false, // ❌ Secure false in dev
-            sameSite: "strict",
+            sameSite: "None",
         });
         
 
