@@ -42,6 +42,7 @@ const generateToken = (email) => {
 
 const authenticateUser = async (req, res, next) => {
     try {
+        console.log("I m in the authenticateUser"); // </Debuggin>g
         console.log("Cookies Received:", req.cookies); // 🔥 Debugging
 
         const token = req.cookies.token;
@@ -236,7 +237,7 @@ app.get("/blogs", async (req, res) => {
 });
 
 app.post("/blogs", authenticateUser, async (req, res) => {
-    
+    console.log("I m in the blog post"); 
     try {
         const newData = new Blog(req.body);
         await newData.save();
