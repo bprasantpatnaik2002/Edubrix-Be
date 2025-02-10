@@ -93,6 +93,7 @@ app.post("/api/auth/signup", async (req, res) => {
 /* ========================== Signin ========================== */
 
 app.post("/api/auth/login", async (req, res) => {
+    console.log("I m in the login"); // </Debugging>
     const { email, password } = req.body;
 
     try {
@@ -130,6 +131,7 @@ app.post("/api/auth/login", async (req, res) => {
 
 /* ========================== STUDENT ========================== */
 app.get("/fall", async (req, res) => {
+    console.log("I m in the fall get"); // </Debugging>
     try {
         const data = await Student.find();
         res.json(data);
