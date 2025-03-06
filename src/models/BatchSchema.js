@@ -22,9 +22,8 @@ const BatchSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    img:{
-        type:String,
-        required:true
+    meet:{
+        type:String
     },
     link:{
         type:String,
