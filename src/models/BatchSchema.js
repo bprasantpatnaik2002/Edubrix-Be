@@ -6,7 +6,19 @@ const BatchSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    desc:{
+        type:String,
+        required:true
+    },
     date:{
+        type:String,
+        required:true
+    },
+    time:{
+        type:String,
+        required:true
+    },
+    duration:{
         type:String,
         required:true
     },

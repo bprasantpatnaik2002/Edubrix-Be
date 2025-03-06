@@ -134,6 +134,7 @@ app.get("/fall", async (req, res) => {
     console.log("I m in the fall get"); // </Debugging>
     try {
         const data = await Student.find();
+        console.log("Data:", data); // 🔥 Debugging
         res.json(data);
     } catch (error) {
         res.status(500).json([]);
