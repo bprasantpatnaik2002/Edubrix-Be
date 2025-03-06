@@ -131,10 +131,10 @@ app.post("/api/auth/login", async (req, res) => {
 
 /* ========================== STUDENT ========================== */
 app.get("/fall", async (req, res) => {
-    console.log("I m in the fall get"); // </Debugging>
+    // console.log("I m in the fall get"); // </Debugging>
     try {
         const data = await Student.find();
-        console.log("Data:", data); // 🔥 Debugging
+        // console.log("Data:", data); // 🔥 Debugging
         res.json(data);
     } catch (error) {
         res.status(500).json([]);
@@ -241,7 +241,7 @@ app.get("/blogs", async (req, res) => {
 });
 
 app.post("/blogs", authenticateUser, async (req, res) => {
-    console.log("I m in the blog post"); 
+    // console.log("I m in the blog post"); 
     try {
         const newData = new Blog(req.body);
         await newData.save();
@@ -333,7 +333,7 @@ app.delete("/newsUpdates/:id", authenticateUser, async (req, res) => {
 
 /* ========================== BATCHES ========================== */
 app.get("/batches", async (req, res) => {
-    
+    console.log("Fetching Batches"); // </Debugging>
     try {
         res.json(await Batch.find());
     } catch (error) {
@@ -343,8 +343,10 @@ app.get("/batches", async (req, res) => {
 });
 
 app.post("/batches", authenticateUser, async (req, res) => {
-    
+    console.log("Adding Batches"); // </Debugging>
+
     try {
+        console.log("Batch need to be added",req.body);
         const newData = new Batch(req.body);
         await newData.save();
     } catch (error) {
