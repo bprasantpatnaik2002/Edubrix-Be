@@ -241,8 +241,9 @@ app.get("/blogs", async (req, res) => {
 });
 
 app.post("/blogs", authenticateUser, async (req, res) => {
-    // console.log("I m in the blog post"); 
+    console.log("I m in the blog post"); 
     try {
+        console.log(req.body);
         const newData = new Blog(req.body);
         await newData.save();
         console.log("New Data Saved");
@@ -310,9 +311,9 @@ app.get("/newsUpdates", async (req, res) => {
 });
 
 app.post("/newsUpdates", authenticateUser, async (req, res) => {
-    console.log("I m in the newsUpdates post");
+    // console.log("I m in the newsUpdates post");
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const newData = new NewsUpdate(req.body);
         await newData.save();
     } catch (error) {
@@ -333,7 +334,7 @@ app.delete("/newsUpdates/:id", authenticateUser, async (req, res) => {
 
 /* ========================== BATCHES ========================== */
 app.get("/batches", async (req, res) => {
-    console.log("Fetching Batches"); // </Debugging>
+    // console.log("Fetching Batches"); // </Debugging>
     try {
         res.json(await Batch.find());
     } catch (error) {

@@ -2,21 +2,27 @@ import mongoose from "mongoose"
 import 'dotenv/config'
 
 const BlogSchema = new mongoose.Schema({
-    blog:{
-        type:String,
-        required:true
+    title: {
+        type: String,
+        required: true,
+        trim: true
     },
-    date:{
-        type:String,
-        required:true
+    description: {
+        type: String,
+        required: true,
+        trim: true
     },
-    img:{
-        type:String,
-        required:true
+    author: {
+        type: String,
+        required: true,
+        trim: true
     },
-    link:{
-        type:String,
-        required:true
+    publishedAt: {
+        type: String
+    },
+    link: {
+        type: String, // Optional external link for reference
+        required: false
     }
 },{timestamps:true});
 
