@@ -2,22 +2,11 @@ import mongoose from "mongoose"
 import 'dotenv/config'
 
 const CouponSchema = new mongoose.Schema({
-    coupon:{
-        type:String,
-        required:true
-    },
-    date:{
-        type:String,
-        required:true
-    },
-    img:{
-        type:String,
-        required:true
-    },
-    link:{
-        type:String,
-        required:true
-    }
+    code: { type: String, required: true, unique: true, trim: true },
+    discountType: { type: String, enum: ["percentage", "fixed"], required: true },
+    discountValue: { type: Number, required: true },
+    validUntil: { type: Date, required: true },
+    isActive: { type: Boolean, default: true },
 },{timestamps:true});
 
 export const Coupon=mongoose.model("Coupon",CouponSchema);

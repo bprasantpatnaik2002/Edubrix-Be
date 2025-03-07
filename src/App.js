@@ -44,7 +44,7 @@ const authenticateUser = async (req, res, next) => {
     console.log("I m in the authenticateUser"); // </Debuggin>g
     try {
         
-        console.log("Cookies Received:", req.cookies); // 🔥 Debugging
+        // console.log("Cookies Received:", req.cookies); // 🔥 Debugging
 
         const token = req.cookies.token;
         if (!token) {
@@ -275,8 +275,9 @@ app.get("/coupons", async (req, res) => {
 });
 
 app.post("/coupons", authenticateUser, async (req, res) => {
-    
+    console.log("I m in the coupon post"); // </Debugging>
     try {
+        console.log(req.body);
         const newData = new Coupon(req.body);
         await newData.save();
         res.json(await Coupon.find());
