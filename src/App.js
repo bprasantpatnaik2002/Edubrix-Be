@@ -275,9 +275,9 @@ app.get("/coupons", async (req, res) => {
 });
 
 app.post("/coupons", authenticateUser, async (req, res) => {
-    console.log("I m in the coupon post"); // </Debugging>
+    // console.log("I m in the coupon post");
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const newData = new Coupon(req.body);
         await newData.save();
         res.json(await Coupon.find());
@@ -310,14 +310,13 @@ app.get("/newsUpdates", async (req, res) => {
 });
 
 app.post("/newsUpdates", authenticateUser, async (req, res) => {
-    
+    console.log("I m in the newsUpdates post");
     try {
-        //console.log("added");
+        console.log(req.body);
         const newData = new NewsUpdate(req.body);
         await newData.save();
     } catch (error) {
         res.status(500).json({ error: "Server error" });
-        
     }
     
 });

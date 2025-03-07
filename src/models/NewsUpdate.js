@@ -2,21 +2,28 @@ import mongoose from "mongoose"
 import 'dotenv/config'
 
 const NewsUpdateSchema = new mongoose.Schema({
-    news:{
-        type:String,
-        required:true
+    title: {
+        type: String,
+        required: true,
+        trim: true
     },
-    date:{
-        type:String,
-        required:true
+    shortDescription: {
+        type: String,
+        required: true,
+        trim: true
     },
-    img:{
-        type:String,
-        required:true
+    author: {
+        type: String, // Name of the news author
+        required: true,
+        trim: true
     },
-    link:{
-        type:String,
-        required:true
+    link: {
+        type: String, // External link to full news article
+        required: false
+    },
+    publishedAt: {
+        type: String,
+        required: true
     }
 },{timestamps:true});
 
